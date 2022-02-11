@@ -1,0 +1,23 @@
+# ninja log v5
+2	399	6662168278641263	CMakeFiles/MegasenaSimulator.dir/main.cpp.obj	ae64280d424983c3
+483	575	6662285979059856	MegasenaSimulator.exe	6e1778fde9d84c13
+1	139	6662296841866337	build.ninja	a96e107bf36d5fa2
+10	83	6662156660668107	CMakeFiles/MegasenaSimulator.dir/utils/UID.cpp.obj	7d0a1dcaa3d46bfe
+11	81	6662282068832466	CMakeFiles/MegasenaSimulator.dir/src/utils/uid/UID.cpp.obj	552a529f48054468
+9	195	6662167402267545	CMakeFiles/MegasenaSimulator.dir/Jogo.cpp.obj	54202654e5cfc763
+34	107	6662282069087684	CMakeFiles/MegasenaSimulator.dir/src/utils/random_generator/RandomGenerator.cpp.obj	8766e54f6cd9d474
+6	182	6662282069843337	CMakeFiles/MegasenaSimulator.dir/src/jogo/Game.cpp.obj	97ad881d975f06e7
+2	406	6662282437711756	CMakeFiles/MegasenaSimulator.dir/src/main.cpp.obj	e7d2cee50fa187ce
+2	482	6662285978139061	CMakeFiles/MegasenaSimulator.dir/src/megasena/MegaSena.cpp.obj	54bca3dc4e6b4a14
+2	449	6662312924102496	CMakeFiles/MegasenaSimulator.dir/src/main.cpp.obj	e7d2cee50fa187ce
+10	516	6662312924773068	CMakeFiles/MegasenaSimulator.dir/src/megasena/MegaSena.cpp.obj	54bca3dc4e6b4a14
+516	636	6662312925969097	MegasenaSimulator.exe	6e1778fde9d84c13
+3	401	6662313472968671	CMakeFiles/MegasenaSimulator.dir/src/main.cpp.obj	e7d2cee50fa187ce
+3	415	6662319579961769	CMakeFiles/MegasenaSimulator.dir/src/main.cpp.obj	e7d2cee50fa187ce
+10	535	6662319581162791	CMakeFiles/MegasenaSimulator.dir/src/megasena/MegaSena.cpp.obj	54bca3dc4e6b4a14
+535	643	6662319582233709	MegasenaSimulator.exe	6e1778fde9d84c13
+2	511	6662321699217336	CMakeFiles/MegasenaSimulator.dir/src/megasena/MegaSena.cpp.obj	54bca3dc4e6b4a14
+511	620	6662321700303266	MegasenaSimulator.exe	6e1778fde9d84c13
+3	408	6662327095891063	CMakeFiles/MegasenaSimulator.dir/src/main.cpp.obj	e7d2cee50fa187ce
+10	539	6662327097197179	CMakeFiles/MegasenaSimulator.dir/src/megasena/MegaSena.cpp.obj	54bca3dc4e6b4a14
+539	646	6662327098263092	MegasenaSimulator.exe	6e1778fde9d84c13
