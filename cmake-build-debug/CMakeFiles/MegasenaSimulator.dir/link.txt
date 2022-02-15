@@ -1,0 +1,3 @@
+C:\Users\muril\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\213.6777.58\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\MegasenaSimulator.dir/objects.a
+C:\Users\muril\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\213.6777.58\bin\mingw\bin\ar.exe qc CMakeFiles\MegasenaSimulator.dir/objects.a @CMakeFiles\MegasenaSimulator.dir\objects1.rsp
+C:\Users\muril\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\213.6777.58\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\MegasenaSimulator.dir/objects.a -Wl,--no-whole-archive -o MegasenaSimulator.exe -Wl,--out-implib,libMegasenaSimulator.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MegasenaSimulator.dir\linklibs.rsp

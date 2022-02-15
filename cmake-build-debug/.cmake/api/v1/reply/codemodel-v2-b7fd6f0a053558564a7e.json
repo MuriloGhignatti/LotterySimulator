@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Codes/C++/MegasenaSimulator/cmake-build-debug",
-		"source" : "C:/Codes/C++/MegasenaSimulator"
+		"build" : "F:/Codes/C++/MegaSena/cmake-build-debug",
+		"source" : "F:/Codes/C++/MegaSena"
 	},
 	"version" : 
 	{

@@ -17,8 +17,8 @@ class MegaSena {
     double* prizeDistribution;
     int* jackpotNumbers;
 
-    std::vector<std::vector<UID*>> winners;
-    std::vector<Game*> games;
+    std::vector<std::vector<UID>> winners;
+    std::vector<Game> games;
 
     bool wasNumberDraw(int number);
     int checkHowManyNumbersWhereRight(int* numbers);
@@ -27,9 +27,9 @@ class MegaSena {
 public:
     void drawNumbers(bool verbose);
     void addGame(int* numbers);
-    void addGame(Game* game);
+    void addGame(Game game);
     void addDebugGames();
-
+    void generateRandomGames(int ammount);
     double* publishWinners(bool verbose);
 
     MegaSena(double maxPrize, double costPerGame, double prizeDistribution[3]);

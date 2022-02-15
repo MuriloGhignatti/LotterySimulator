@@ -9,3 +9,7 @@ int UID::nextID = 0;
 UID::UID() {
     id = ++nextID;
 }
+
+UID::UID(const UID& reference) {
+    this->id = reference.id;
+}

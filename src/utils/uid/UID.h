@@ -12,6 +12,7 @@ protected:
 public:
     int id;
     UID();
+    UID(const UID&);
 };
 
 

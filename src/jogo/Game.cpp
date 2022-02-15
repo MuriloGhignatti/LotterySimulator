@@ -8,12 +8,6 @@ Game Game::gerarJogoAleatorio() {
     return Game(RandomGenerator::uniqueRandomList(6, 1, 60));
 }
 
-Game::Game(int *numeros) {
-    uid = new UID();
-    this->numeros = numeros;
-}
-
-Game::~Game() {
-    delete uid;
-    delete[] numeros;
+Game::Game(int toCopy[6]){
+    memcpy(this->numeros, toCopy, sizeof(int) * 6);
 }

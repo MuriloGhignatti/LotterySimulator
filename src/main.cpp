@@ -5,7 +5,8 @@
 int main() {
     MegaSena megaSena(3000000.00, 4.5, new double[]{0.19, 0.19, 0.35});
     megaSena.drawNumbers(true);
-    megaSena.addDebugGames();
+    //megaSena.addDebugGames();
+    megaSena.generateRandomGames(8630475);
     megaSena.publishWinners(true);
     return 0;
 }

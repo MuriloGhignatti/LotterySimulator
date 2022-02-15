@@ -7,17 +7,16 @@
 
 #include <vector>
 #include <stdlib.h>
+#include <cstring>
 #include "../utils/uid/UID.h"
 #include "../utils/random_generator/RandomGenerator.h"
 
 class Game {
 public:
-    UID* uid;
-    int* numeros;
+    UID uid;
+    int numeros[6];
 
-    explicit Game(int* numeros);
-
-    ~Game();
+    explicit Game(int numeros[6]);
 
     static Game gerarJogoAleatorio();
 };

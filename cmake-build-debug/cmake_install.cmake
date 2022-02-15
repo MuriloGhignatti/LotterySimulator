@@ -1,4 +1,4 @@
-# Install script for directory: C:/Codes/C++/MegasenaSimulator
+# Install script for directory: F:/Codes/C++/MegaSena
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Codes/C++/MegasenaSimulator/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "F:/Codes/C++/MegaSena/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
