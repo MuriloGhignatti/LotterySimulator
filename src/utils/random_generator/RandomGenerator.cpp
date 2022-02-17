@@ -3,28 +3,25 @@
 //
 
 #include "RandomGenerator.h"
+#include <chrono>
 
-RandomGenerator::RandomGenerator(int seed) {
-    this->seed = seed;
-}
+std::mt19937 RandomGenerator::rand;
 
-int *RandomGenerator::uniqueRandomList(int size, int start, int end) {
-    srand(time(NULL));
-    int* list = new int[size];
+void RandomGenerator::uniqueRandomList(int size, int start, int end, int arrayToPopulate[6]) {
+    RandomGenerator::rand.seed(std::chrono::system_clock::now().time_since_epoch().count());
     int randomNumber;
     bool alreadyGenerated = true;
     for (int i = 0; i < size; ++i) {
         while(alreadyGenerated){
-            randomNumber = rand() % end + start;
+            randomNumber = RandomGenerator::rand() % end + start;
             for(int j = 0; j < size; ++j){
-                if(list[j] == randomNumber){
+                if(arrayToPopulate[j] == randomNumber){
                     continue;
                 }
             }
             alreadyGenerated = false;
         }
-        list[i] = randomNumber;
+        arrayToPopulate[i] = randomNumber;
         alreadyGenerated = true;
     }
-    return list;
 }

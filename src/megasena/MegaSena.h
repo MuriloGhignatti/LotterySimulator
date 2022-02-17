@@ -6,16 +6,16 @@
 #define MEGASENASIMULATOR_MEGASENA_H
 
 #include <vector>
-#include <iostream>
-#include <array>
 #include "../jogo/Game.h"
-#include "../utils/random_generator/RandomGenerator.h"
+#include <semaphore>
 
 class MegaSena {
     double maxPrize;
     double costPerGame;
-    double* prizeDistribution;
-    int* jackpotNumbers;
+    double prizeDistribution[3];
+    int jackpotNumbers[6];
+
+    std::binary_semaphore semaphore;
 
     std::vector<std::vector<UID>> winners;
     std::vector<Game> games;
@@ -23,18 +23,18 @@ class MegaSena {
     bool wasNumberDraw(int number);
     int checkHowManyNumbersWhereRight(int* numbers);
     void checkWinners();
+    void privateGenerateRandomGames(int amount);
 
 public:
     void drawNumbers(bool verbose);
     void addGame(int* numbers);
     void addGame(Game game);
     void addDebugGames();
-    void generateRandomGames(int ammount);
+    void generateRandomGamesMultiThreaded(int amount);
+    void generateRandomGames(int amount);
     double* publishWinners(bool verbose);
 
     MegaSena(double maxPrize, double costPerGame, double prizeDistribution[3]);
-
-    ~MegaSena();
 };
 
 

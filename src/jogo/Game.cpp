@@ -5,7 +5,9 @@
 #include "Game.h"
 
 Game Game::gerarJogoAleatorio() {
-    return Game(RandomGenerator::uniqueRandomList(6, 1, 60));
+    int tempArray[6];
+    RandomGenerator::uniqueRandomList(6, 1, 60, tempArray);
+    return Game(tempArray);
 }
 
 Game::Game(int toCopy[6]){

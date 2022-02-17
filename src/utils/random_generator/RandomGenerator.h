@@ -5,16 +5,14 @@
 #ifndef MEGASENASIMULATOR_RANDOMGENERATOR_H
 #define MEGASENASIMULATOR_RANDOMGENERATOR_H
 
-#include <stdlib.h>
-#include <time.h>
+#include <random>
 
 class RandomGenerator {
-    int seed;
+
+    static std::mt19937 rand;
 
 public:
-    explicit RandomGenerator(int seed);
-
-    static int* uniqueRandomList(int size, int start, int end);
+    static void uniqueRandomList(int size, int start, int end, int arrayToPopulate[6]);
 };
 
 

@@ -3,20 +3,17 @@
 //
 
 #include "MegaSena.h"
+#include <iostream>
+#include <thread>
 
-MegaSena::MegaSena(double maxPrize, double costPerGame, double* prizeDistribution): winners(3) {
+MegaSena::MegaSena(double maxPrize, double costPerGame, double prizeDistribution[3]): winners(3), semaphore(1){
     this->maxPrize = maxPrize;
     this->costPerGame = costPerGame;
-    this->prizeDistribution = prizeDistribution;
-}
-
-MegaSena::~MegaSena() {
-    delete prizeDistribution;
-    delete jackpotNumbers;
+    memcpy(this->prizeDistribution, prizeDistribution, sizeof(double) * 3);
 }
 
 void MegaSena::drawNumbers(bool verbose) {
-    this->jackpotNumbers = RandomGenerator::uniqueRandomList(6, 1, 60);
+    RandomGenerator::uniqueRandomList(6, 1, 60, jackpotNumbers);
     if(verbose){
         std::cout << "[";
         for(int i = 0; i < 6; ++i){
@@ -31,12 +28,14 @@ void MegaSena::addGame(int *numbers) {
 }
 
 void MegaSena::addGame(Game game) {
+    semaphore.acquire();
     games.push_back(game);
+    semaphore.release(1);
 }
 
 double* MegaSena::publishWinners(bool verbose) {
     checkWinners();
-    double* prizeWonPerClassification = new double[]{0,0,0};
+    double prizeWonPerClassification[3] = {0,0,0};
     char* stringArray[3] = {"Quadra", "Quina", "Sena"};
     for (int i = 0; i < winners.size(); ++i) {
         int winnersSize = winners[i].size();
@@ -105,8 +104,36 @@ void MegaSena::addDebugGames() {
     addGame(testCaseOne);
 }
 
-void MegaSena::generateRandomGames(int ammount) {
-    for(int i = 0; i < ammount; ++i){
-        addGame(RandomGenerator::uniqueRandomList(6, 1, 60));
+void MegaSena::generateRandomGamesMultiThreaded(int amount){
+    int cpusOnComputer = std::thread::hardware_concurrency() / 2;
+    if(cpusOnComputer == 0){
+        std::cout << "Cannot automatic retrieve the amount of cpus available on this computer, please input manually if you know";
+        std::cin >> cpusOnComputer;
+        cpusOnComputer = std::max(cpusOnComputer, 1);
     }
+    games.reserve(amount);
+    int amountPerThread = amount / cpusOnComputer;
+    std::vector<std::thread> threads;
+    threads.reserve(cpusOnComputer);
+    for(std::size_t _ = 0; _ < cpusOnComputer; ++_){
+        threads.emplace_back(std::thread(&MegaSena::privateGenerateRandomGames, this, amountPerThread));
+    }
+    for(auto& currentThread: threads){
+        currentThread.join();
+    }
+}
+
+void MegaSena::generateRandomGames(int amount) {
+    games.reserve(amount);
+    privateGenerateRandomGames(amount);
+}
+
+void MegaSena::privateGenerateRandomGames(int amount) {
+    int memToCopy[6];
+    std::cout << "Gerando Jogos" << "\n";
+    for(int i = 0; i < amount; ++i){
+        RandomGenerator::uniqueRandomList(6, 1, 60, memToCopy);
+        addGame(memToCopy);
+    }
+    std::cout << "Jogos gerados" << "\n";
 }
