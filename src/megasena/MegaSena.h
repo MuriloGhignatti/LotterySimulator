@@ -11,9 +11,9 @@
 
 class MegaSena {
     double maxPrize;
-    double costPerGame;
     double prizeDistribution[3];
     int jackpotNumbers[6];
+    bool wasWinnersChecked;
 
     std::binary_semaphore semaphore;
 
@@ -26,13 +26,15 @@ class MegaSena {
     void privateGenerateRandomGames(int amount);
 
 public:
+    double costPerGame;
     void drawNumbers(bool verbose);
-    void addGame(int* numbers);
-    void addGame(Game game);
+    int addGame(int* numbers);
+    int addGame(Game game);
     void addDebugGames();
     void generateRandomGamesMultiThreaded(int amount);
     void generateRandomGames(int amount);
     double* publishWinners(bool verbose);
+    float checkIfIDIsOnWinners(std::vector<int> games);
 
     MegaSena(double maxPrize, double costPerGame, double prizeDistribution[3]);
 };

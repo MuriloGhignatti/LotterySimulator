@@ -6,9 +6,7 @@
 #include <iostream>
 #include <thread>
 
-MegaSena::MegaSena(double maxPrize, double costPerGame, double prizeDistribution[3]): winners(3), semaphore(1){
-    this->maxPrize = maxPrize;
-    this->costPerGame = costPerGame;
+MegaSena::MegaSena(double maxPrize, double costPerGame, double prizeDistribution[3]): winners(3), semaphore(1), wasWinnersChecked(false), maxPrize(maxPrize), costPerGame(costPerGame){
     memcpy(this->prizeDistribution, prizeDistribution, sizeof(double) * 3);
 }
 
@@ -23,14 +21,15 @@ void MegaSena::drawNumbers(bool verbose) {
     }
 }
 
-void MegaSena::addGame(int *numbers) {
-    addGame(Game(numbers));
+int MegaSena::addGame(int *numbers) {
+    return addGame(Game(numbers));
 }
 
-void MegaSena::addGame(Game game) {
+int MegaSena::addGame(Game game) {
     semaphore.acquire();
     games.push_back(game);
     semaphore.release(1);
+    return game.uid.id;
 }
 
 double* MegaSena::publishWinners(bool verbose) {
@@ -88,6 +87,7 @@ void MegaSena::checkWinners() {
                 break;
         }
     }
+    wasWinnersChecked = true;
 }
 
 void MegaSena::addDebugGames() {
@@ -136,4 +136,24 @@ void MegaSena::privateGenerateRandomGames(int amount) {
         addGame(memToCopy);
     }
     std::cout << "Jogos gerados" << "\n";
+}
+
+float MegaSena::checkIfIDIsOnWinners(std::vector<int> games) {
+    if(!wasWinnersChecked){
+        checkWinners();
+    }
+    float amountWon = 0;
+    char* stringArray[3] = {"Quadra", "Quina", "Sena"};
+    for(auto id: games){
+        for(int i = 0; i < winners.size(); ++i){
+            double prize = (prizeDistribution[i] * maxPrize) / winners[i].size();
+            for(int j = 0; j < winners[i].size(); ++j){
+                if(id == winners[i][j].id){
+                    std::cout << "[" << winners[i][j].id << "]" << stringArray[i] << ": Congratulations on winning R$ " << prize << std::endl;
+                    amountWon += prize;
+                }
+            }
+        }
+    }
+    return amountWon;
 }
