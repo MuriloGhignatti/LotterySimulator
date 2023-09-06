@@ -1,2 +1,2 @@
-# MegaSena
-This is a simple lottery simulator, capeble of simulating thousands of games
+# LotterySimulator
+This is a simple simulator capeble of simulating thousands of games
